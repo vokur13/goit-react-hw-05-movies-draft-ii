@@ -3,7 +3,8 @@ export const TrendList = ({ data, onSelect }) => {
     <ul>
       {data.map(item => (
         <li key={item.id} onClick={() => onSelect(item.id)}>
-          <a href={'/home/movies'}>{item.title}</a>
+          {item.title}
+          {/* <a href={'/home/movies'}>{item.title}</a> */}
         </li>
       ))}
     </ul>

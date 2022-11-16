@@ -6,6 +6,8 @@ export const Home = () => {
   const [value, setValue] = useState([]);
   const [movieId, setMovieID] = useState('');
   useEffect(() => {
+    setValue([]);
+    setMovieID('');
     async function fetchAssets() {
       try {
         const { results } = await API.getMovie();
@@ -19,7 +21,7 @@ export const Home = () => {
 
   function onSelect(data) {
     setMovieID(data);
-    console.log(movieId);
+    console.log('movieId', movieId);
   }
 
   return (
