@@ -3,15 +3,15 @@ import * as API from 'services/api';
 import { TrendList } from 'components/TrendList';
 
 export const Home = () => {
-  const [value, setValue] = useState([]);
+  const [trendMovies, setTrendMovies] = useState([]);
   const [movieId, setMovieID] = useState('');
   useEffect(() => {
-    setValue([]);
+    setTrendMovies([]);
     setMovieID('');
     async function fetchAssets() {
       try {
         const { results } = await API.getMovie();
-        setValue(results);
+        setTrendMovies(results);
       } catch (error) {
         console.log(error);
       }
@@ -20,6 +20,9 @@ export const Home = () => {
   }, []);
 
   function onSelect(data) {
+    if (!data) {
+      return;
+    }
     setMovieID(data);
     console.log('movieId', movieId);
   }
@@ -27,7 +30,7 @@ export const Home = () => {
   return (
     <>
       <h1>Trending today</h1>
-      <TrendList data={value} onSelect={onSelect} />
+      <TrendList data={trendMovies} onSelect={onSelect} />
     </>
   );
 };
